@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:meal_on_wheels/home/food_page_body.dart';
+import 'package:meal_on_wheels/pages/home/food_page_body.dart';
 import 'package:meal_on_wheels/utils/dimensions.dart';
 import 'package:meal_on_wheels/widgets/big_text.dart';
 import 'package:meal_on_wheels/widgets/small_text.dart';
 
-import '../colors.dart';
+import '../../utils/colors.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({Key? key}) : super(key: key);
@@ -53,7 +53,9 @@ class _MainFoodPageState extends State<MainFoodPage> {
               ),
             ),
           ),
-          FoodPageBody(),
+          Expanded(child: SingleChildScrollView(
+            child: FoodPageBody(),
+          )),
         ],
       ),
     );
