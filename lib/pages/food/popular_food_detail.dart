@@ -3,12 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meal_on_wheels/utils/dimensions.dart';
 import 'package:meal_on_wheels/widgets/app_icon.dart';
+import 'package:meal_on_wheels/widgets/expandable_text_widget.dart';
 
 import '../../utils/colors.dart';
 import '../../widgets/app_column.dart';
 import '../../widgets/big_text.dart';
-import '../../widgets/icon_and_text_widget.dart';
-import '../../widgets/small_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   const PopularFoodDetail ({Key? key}) : super(key: key);
@@ -19,6 +18,7 @@ class PopularFoodDetail extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Stack(
         children: [
+          //Backgroung image
           Positioned(
               left: 0,
               right: 0,
@@ -35,6 +35,7 @@ class PopularFoodDetail extends StatelessWidget {
                 ),
               )
           ),
+          //icon widget
           Positioned(
               top: Dimensions.height45,
               left: Dimensions.width20,
@@ -47,6 +48,7 @@ class PopularFoodDetail extends StatelessWidget {
                 ],
               )
           ),
+          //Intro to food
           Positioned(
               left: 0,
               right: 0,
@@ -66,10 +68,13 @@ class PopularFoodDetail extends StatelessWidget {
                     children: [
                       AppColumn(text: "samosa",),
                       SizedBox(height: Dimensions.height20),
-                      BigText(text: "Introduce")
+                      BigText(text: "Introduction"),
+                      SizedBox(height: Dimensions.height20),
+                      Expanded(child : const SingleChildScrollView(child: ExpandableTextWidget(text: "Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia!                                    Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia!")))
                     ],
                   )
           ))
+
         ],
       ),
       bottomNavigationBar: Container(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:meal_on_wheels/pages/food/popular_food_detail.dart';
+import 'package:meal_on_wheels/pages/food/recommended_food_detail.dart';
 import 'package:meal_on_wheels/pages/home/main_food_page.dart';
 
 import 'package:meal_on_wheels/pages/home/main_food_page.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PopularFoodDetail(),
+      home: RecommendedFoodDetail(),
     );
   }
 }
