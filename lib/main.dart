@@ -5,8 +5,12 @@ import 'package:meal_on_wheels/pages/food/recommended_food_detail.dart';
 import 'package:meal_on_wheels/pages/home/main_food_page.dart';
 
 import 'package:meal_on_wheels/pages/home/main_food_page.dart';
+import 'helper/dependencies.dart' as dep;
 
-void main() {
+void main() async {
+  //load dependencies
+  WidgetsFlutterBinding.ensureInitialized();
+  await dep.init();
   runApp(const MyApp());
 }
 
