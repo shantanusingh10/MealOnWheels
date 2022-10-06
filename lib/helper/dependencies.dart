@@ -8,8 +8,8 @@ import '../data/repository/popular_product_repo.dart';
 Future<void> init()async{
 
   //Api Client
-  Get.lazyPut(() => ApiClient(appBaseUrl: ""));
-
+  Get.lazyPut(() => ApiClient(appBaseUrl: "http://mvs.bslmeiyu.com"));
+///
   //Repository
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
 
