@@ -12,6 +12,7 @@ import 'package:meal_on_wheels/pages/home/food_page_body.dart';
 import 'package:meal_on_wheels/pages/home/main_food_page.dart';
 
 import 'package:meal_on_wheels/pages/home/main_food_page.dart';
+import 'package:meal_on_wheels/routes/route_helper.dart';
 import 'helper/dependencies.dart' as dep;
 
 void main() async {
@@ -41,10 +42,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+
       home: MainFoodPage(),
+      initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
     );
   }
 }
