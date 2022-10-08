@@ -81,14 +81,13 @@ class PopularProductController extends GetxController{
   }
 
   void addItem(ProductModel product){
-   // if(quantity > 0) {
       _cart.addItem(product, _quantity);
       _quantity = 0;
       _inCartItems = _cart.getQuantity(product);
-    // }
-    // else{
-    // }
+      update();
   }
 
-
+  int get  totalItems{
+    return _cart.totalItems;
+  }
 }
