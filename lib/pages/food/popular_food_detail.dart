@@ -3,20 +3,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:meal_on_wheels/controllers/cart_controller.dart';
 import 'package:meal_on_wheels/pages/home/main_food_page.dart';
 import 'package:meal_on_wheels/utils/dimensions.dart';
 import 'package:meal_on_wheels/widgets/app_icon.dart';
 import 'package:meal_on_wheels/widgets/expandable_text_widget.dart';
 
+import '../../controllers/popular_product_controller.dart';
+import '../../utils/app_constants.dart';
 import '../../utils/colors.dart';
 import '../../widgets/app_column.dart';
 import '../../widgets/big_text.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail ({Key? key}) : super(key: key);
+  final int pageId;
+  const PopularFoodDetail ({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product = Get.find<PopularProductController>().popularProductList[pageId];
+    Get.find<PopularProductController>().initProduct(Get.find<CartController>());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -31,8 +37,8 @@ class PopularFoodDetail extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage(
-                      "assets/image/image1.jpg"
+                    image: NetworkImage(
+                      AppConstants.BASE_URL + AppConstants.UPLOAD_URL + product.img!
                     )
                   )
                 ),
@@ -73,57 +79,71 @@ class PopularFoodDetail extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AppColumn(text: "samosa",),
+                      AppColumn(text: product.name!),
                       SizedBox(height: Dimensions.height20),
                       BigText(text: "Introduction"),
                       SizedBox(height: Dimensions.height20),
-                      Expanded(child : const SingleChildScrollView(child: ExpandableTextWidget(text: "Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia!                                    Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia! Widely considered a quintessentially Indian delicacy, few people know that the samosa does not have an Indian origin. Yes, you read that right. The deep fried, tightly pack of spicy goodness that we thought belonged to India is actually a delicious and well-travelled immigrant from Central Asia!")))
+                      Expanded(child : SingleChildScrollView(child: ExpandableTextWidget(text: product.description!)))
                     ],
                   )
           ))
 
         ],
       ),
-      bottomNavigationBar: Container(
-        height: Dimensions.bottomHeightBar,
-        padding: EdgeInsets.only(top: Dimensions.height30,bottom: Dimensions.height30,left: Dimensions.width20,right: Dimensions.width20),
-        decoration: BoxDecoration(
-          color: Colors.white10,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(Dimensions.radius20*2),
-            topRight: Radius.circular(Dimensions.radius20*2)
-          )
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: Dimensions.height20,bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius20),
-                color: Colors.white
+      bottomNavigationBar: GetBuilder<PopularProductController>(builder: (popularProduct){
+        return Container(
+          height: Dimensions.bottomHeightBar,
+          padding: EdgeInsets.only(top: Dimensions.height30,bottom: Dimensions.height30,left: Dimensions.width20,right: Dimensions.width20),
+          decoration: BoxDecoration(
+              color: Colors.white10,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(Dimensions.radius20*2),
+                  topRight: Radius.circular(Dimensions.radius20*2)
+              )
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: Dimensions.height20,bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: Colors.white
+                ),
+                child: Row(
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          popularProduct.setQuantity(false);
+                        },
+                        child: Icon(Icons.remove, color: AppColors.blueColor,)),
+                    SizedBox(width: Dimensions.width10/2,),
+                    BigText(text: popularProduct.quantity.toString()),
+                    SizedBox(width: Dimensions.width10/2,),
+                    GestureDetector(
+                        onTap: (){
+                          popularProduct.setQuantity(true);
+                        },
+                        child: Icon(Icons.add,color: AppColors.blueColor,))
+                  ],
+                ),
               ),
-              child: Row(
-                children: [
-                  Icon(Icons.remove, color: AppColors.blueColor,),
-                  SizedBox(width: Dimensions.width10/2,),
-                  BigText(text: "0"),
-                  SizedBox(width: Dimensions.width10/2,),
-                  Icon(Icons.add,color: AppColors.blueColor,)
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(top: Dimensions.height20,bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
-              child: BigText(text: "Rs 100 add to cart", color: Colors.white,),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Dimensions.radius20),
-                color: AppColors.mainColor
-              ),
-            )
-          ],
-        ),
-      ),
+              Container(
+                padding: EdgeInsets.only(top: Dimensions.height20,bottom: Dimensions.height20,left: Dimensions.width20,right: Dimensions.width20),
+                child: GestureDetector(
+                  onTap: (){
+                    popularProduct.addItem(product);
+                  },
+                    child: BigText(text: "Rs ${product.price!*10*popularProduct.quantity} add to cart", color: Colors.white,)),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: AppColors.mainColor
+                ),
+              )
+            ],
+          ),
+        );
+      }),
     );
   }
 }
