@@ -4,6 +4,7 @@ import 'package:meal_on_wheels/controllers/cart_controller.dart';
 import 'package:meal_on_wheels/data/repository/popular_product_repo.dart';
 import 'package:meal_on_wheels/utils/colors.dart';
 
+import '../models/cart_model.dart';
 import '../models/products_model.dart';
 
 class PopularProductController extends GetxController{
@@ -52,6 +53,10 @@ class PopularProductController extends GetxController{
         backgroundColor: AppColors.mainColor,
         colorText: Colors.white,
       );
+      if(_inCartItems > 0){
+        _quantity = - _inCartItems;
+        return _quantity;
+      }
       return 0;
     }
     else if( (_inCartItems + quantity) > 20){
@@ -89,5 +94,8 @@ class PopularProductController extends GetxController{
 
   int get  totalItems{
     return _cart.totalItems;
+  }
+  List<CartModel> get getItems{
+    return _cart.getItems;
   }
 }
