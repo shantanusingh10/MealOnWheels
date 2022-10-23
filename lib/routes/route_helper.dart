@@ -8,6 +8,7 @@ import 'package:meal_on_wheels/pages/food/recommended_food_detail.dart';
 import 'package:meal_on_wheels/pages/home/main_food_page.dart';
 
 import '../pages/cart/cart_page.dart';
+import '../pages/home/home_page.dart';
 
 class RouteHelper{
   static const String initial = '/';
@@ -22,7 +23,7 @@ class RouteHelper{
   static String getCartPage() => '$cartPage';
 
   static List<GetPage> routes = [
-    GetPage(name: initial, page: () => MainFoodPage()),
+    GetPage(name: initial, page: () => HomePage()),
 
     GetPage(name: popularFood, page: () {
       var pageId = Get.parameters['pageId'];
