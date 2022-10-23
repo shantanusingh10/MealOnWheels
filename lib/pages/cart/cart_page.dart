@@ -16,7 +16,7 @@ import '../../routes/route_helper.dart';
 import '../home/main_food_page.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({Key? key}) : super(key: key);
+   CartPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -185,7 +185,7 @@ class CartPage extends StatelessWidget {
                   children: [
 
                     SizedBox(width: Dimensions.width10/2,),
-                    BigText(text: "Rs " + cartController.totalAmount.toString()),
+                    BigText(text: "Rs ${cartController.totalAmount}"),
                     SizedBox(width: Dimensions.width10/2,),
 
                   ],

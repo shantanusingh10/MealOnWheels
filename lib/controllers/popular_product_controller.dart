@@ -27,14 +27,14 @@ class PopularProductController extends GetxController{
     //print("trying");
     if(response.statusCode == 200){
 
-      //print("got products");
+      print("got products");
       _popularProductList = [];
       _popularProductList.addAll(Product.fromJson(response.body).products);
       _isLoaded = true;
       update();
     }else{
-      //print(response.statusCode);
-      //print("not getting");
+      print(response.statusCode);
+      print("not getting");
     }
   }
   //TO increase or decrease item quantity

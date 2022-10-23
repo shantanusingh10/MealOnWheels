@@ -13,6 +13,7 @@ import 'package:meal_on_wheels/pages/home/food_page_body.dart';
 import 'package:meal_on_wheels/pages/home/main_food_page.dart';
 
 import 'package:meal_on_wheels/pages/home/main_food_page.dart';
+import 'package:meal_on_wheels/pages/splash/splash_page.dart';
 import 'package:meal_on_wheels/routes/route_helper.dart';
 import 'helper/dependencies.dart' as dep;
 
@@ -37,16 +38,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList();
 
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+    return GetBuilder<PopularProductController>(builder: (_){
+      return GetBuilder<RecommendedProductController>(builder: (_){
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
 
-      // home: MainFoodPage(),
-      initialRoute: RouteHelper.getInitial(),
-      getPages: RouteHelper.routes,
-    );
+          //home: SplashScreen(),
+          initialRoute: RouteHelper.getSplashPage(),
+          getPages: RouteHelper.routes,
+        );
+      });
+    });
+
+
   }
 }

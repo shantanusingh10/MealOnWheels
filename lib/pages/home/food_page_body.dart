@@ -1,5 +1,4 @@
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal_on_wheels/controllers/popular_product_controller.dart';
@@ -24,8 +23,8 @@ class FoodPageBody extends StatefulWidget {
 
 class _FoodPageBodyState extends State<FoodPageBody> {
   var _curPageValue = 0.0;
-  double _scaleFactor = 0.8;
-  double _height = Dimensions.pageViewContainer;
+  final double _scaleFactor = 0.8;
+  final double _height = Dimensions.pageViewContainer;
   @override
   void initState(){
     super.initState();
@@ -60,7 +59,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       return _buildPageItem(position, popularProducts.popularProductList[position]);
                     }
 
-              )):CircularProgressIndicator(
+              )):const CircularProgressIndicator(
             color: AppColors.mainColor,
           );
         }),
@@ -103,7 +102,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
           GetBuilder<RecommendedProductController>(builder: (recommendedProduct){
             return recommendedProduct.isLoaded ? ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: recommendedProduct.recommendedProductList.length,
                 itemBuilder: (context, index){
@@ -155,7 +154,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                     SizedBox(height: Dimensions.height10),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
+                                      children: const [
                                         IconAndTextWidget(icon: Icons.circle_sharp,
                                             text: "normal",
                                             iconColor: AppColors.iconColor1),
@@ -178,7 +177,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       ),
                     ),
                   );
-                }) : CircularProgressIndicator(
+                }) : const CircularProgressIndicator(
               color: AppColors.mainColor,
             );
           }),
@@ -240,7 +239,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radius20),
                   color: Colors.white,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color(0xFFe8e8e8),
                       blurRadius: 5.0,

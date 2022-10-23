@@ -33,7 +33,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                       Row(
                         children: [
                           SmallText(text: "Hyderabad" ,color: Colors.black45),
-                          Icon(Icons.arrow_drop_down_rounded)
+                          const Icon(Icons.arrow_drop_down_rounded)
                         ],
                       )
                     ],
@@ -42,18 +42,18 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     child: Container(
                         width: Dimensions.width45,
                         height: Dimensions.height45,
-                        child: Icon(Icons.search,color: Colors.white,size: Dimensions.iconsize24),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(Dimensions.radius15),
                           color: Colors.blue,
-                        )
+                        ),
+                        child: Icon(Icons.search,color: Colors.white,size: Dimensions.iconsize24)
                     ),
                   )
                 ],
               ),
             ),
           ),
-          Expanded(child: SingleChildScrollView(
+          const Expanded(child: SingleChildScrollView(
             child: FoodPageBody(),
           )),
         ],

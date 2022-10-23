@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:meal_on_wheels/data/repository/popular_product_repo.dart';
 
+import '../data/repository/recommended_product_repo.dart';
 import '../models/products_model.dart';
 
 class RecommendedProductController extends GetxController{
